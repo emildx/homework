@@ -27,8 +27,8 @@ if [ ! -f "$INPUT" ]; then
 fi
 
 mkdir -p "$OUTPUT_DIR"
-TMPDIR="$(mktemp -d)"
-trap 'rm -rf "$TMPDIR"' EXIT
+TMPDIR="/tmp/pdfs"
+#mkdir -p "$TMPDIR"
 
 # Check dependencies
 if ! command -v pdfseparate >/dev/null 2>&1; then
@@ -49,7 +49,7 @@ fi
 
 # Split PDF into pages
 echo "Splitting PDF into pages..."
-pdfseparate "$INPUT" "$TMPDIR/page-%04d.pdf"
+#pdfseparate "$INPUT" "$TMPDIR/page-%04d.pdf"
 
 # Convert each single-page PDF to markdown
 printf "Converting pages to Markdown in '%s'...\n" "$OUTPUT_DIR"
